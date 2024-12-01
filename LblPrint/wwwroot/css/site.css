@@ -25,16 +25,44 @@ body {
     border-color:black;
     width:80%;
     height:auto;
+    font-size:large;
 }
 .label-outline-left {
-    display:inline-block;
-    border:solid;
-    border-color:black;
+    flex: auto;
+    display: inline-block;
+    margin-left: 10%;
+    margin-right: auto;
 }
 .label-outline-right {
+    flex:auto;
     display: inline-block;
     border: outset;
-    border-color: black;
-    border-style: outset;
+    border-color: grey;
+    border-radius:10px;
     background-color: darkgrey;
+    float:right;
+    margin-left:auto;
+    margin-right:10%;
+    width:200px;
+
+}
+.container-fluid {
+    background-color:midnightblue;
+
+}
+.navbar-brand {
+    background-color: goldenrod;
+    color:midnightblue;
+    padding:.5%;
+    border-style:outset;
+    border-color:midnightblue;
+    border-radius:5px;
+}
+.nav-item {
+    background-color: goldenrod;
+    color: midnightblue;
+    padding: .5%;
+    border-style: outset;
+    border-radius:5px;
+    border-color: midnightblue;
 }
