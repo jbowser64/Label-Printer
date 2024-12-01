@@ -21,8 +21,7 @@ body {
   margin-bottom: 60px;
 }
 .label-container {
-    border:solid;
-    border-color:black;
+    margin-top:5%;
     width:80%;
     height:auto;
     font-size:large;
@@ -30,39 +29,45 @@ body {
 .label-outline-left {
     flex: auto;
     display: inline-block;
-    margin-left: 10%;
+    margin-left: 20%;
     margin-right: auto;
 }
 .label-outline-right {
-    flex:auto;
+    flex: auto;
     display: inline-block;
     border: outset;
     border-color: grey;
-    border-radius:10px;
-    background-color: darkgrey;
-    float:right;
-    margin-left:auto;
-    margin-right:10%;
-    width:200px;
-
+    border-radius: 10px;
+    background-color: lightgray;
+    float: right;
+    margin-left: auto;
+    margin-right: 10%;
+    width: 220px;
+    height:fit-content;
+    margin-top: 10%;
 }
 .container-fluid {
     background-color:midnightblue;
+    border-style:outset;
+    border-color:goldenrod;
+
 
 }
 .navbar-brand {
     background-color: goldenrod;
     color:midnightblue;
-    padding:.5%;
     border-style:outset;
     border-color:midnightblue;
     border-radius:5px;
+    margin-right:1%;
+    padding-left:2%;
+    padding-right: 2%;
 }
 .nav-item {
     background-color: goldenrod;
     color: midnightblue;
-    padding: .5%;
     border-style: outset;
     border-radius:5px;
     border-color: midnightblue;
+    margin-left:1%;
 }

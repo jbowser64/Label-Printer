@@ -13,18 +13,24 @@
             <label>Enter Part Number:</label> <br />
             <input type="text" id="PartNum" /><br />
 
-            <label>Enter FIFO Date:</label> <br />
+            <label>Enter or Edit Location:</label> <br />
+            <input type="text" id="Loc" /><br />
+
+            <label>Enter FIFO Date(MM/YYYY):</label> <br />
             <input type="text" id="FIFO" /><br />
 
             <label>Enter Quantity of Labels:</label> <br />
             <input type="text" id="QTYLbl" /><br />
+
+            <br />
+            <input type="submit" id="PrintLabel" value="Print Label(s)" />
         </div>
 
         <div class="label-outline-right">
-            <label> Part Number </label> <br />
-            <label> Description </label> <br />
-            <label> FIFO Date </label> <br />
-            <label> Warehouse Location </label> <br /> 
+            <label id="lblPartNum"> Part Number </label> <br />
+            <label id="lblDesc"> Description </label> <br />
+            <label id="lblLocation"> Warehouse Location </label> <br /> 
+            <label id="lblFIFO"> FIFO Date </label> <br />
         </div>
     </div>
 </body>
