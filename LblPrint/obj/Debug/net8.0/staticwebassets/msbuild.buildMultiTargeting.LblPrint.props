@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\LblPrint.props" />
+</Project>

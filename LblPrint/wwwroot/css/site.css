@@ -20,3 +20,21 @@ html {
 body {
   margin-bottom: 60px;
 }
+.label-container {
+    border:solid;
+    border-color:black;
+    width:80%;
+    height:auto;
+}
+.label-outline-left {
+    display:inline-block;
+    border:solid;
+    border-color:black;
+}
+.label-outline-right {
+    display: inline-block;
+    border: outset;
+    border-color: black;
+    border-style: outset;
+    background-color: darkgrey;
+}

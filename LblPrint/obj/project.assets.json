@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\josep\\source\\repos\\LblPrint\\LblPrint\\LblPrint.csproj",
+      "projectUniqueName": "C:\\Users\\josep\\source\\repos\\jbowser64\\Label-Printer\\LblPrint\\LblPrint.csproj",
       "projectName": "LblPrint",
-      "projectPath": "C:\\Users\\josep\\source\\repos\\LblPrint\\LblPrint\\LblPrint.csproj",
+      "projectPath": "C:\\Users\\josep\\source\\repos\\jbowser64\\Label-Printer\\LblPrint\\LblPrint.csproj",
       "packagesPath": "C:\\Users\\josep\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\josep\\source\\repos\\LblPrint\\LblPrint\\obj\\",
+      "outputPath": "C:\\Users\\josep\\source\\repos\\jbowser64\\Label-Printer\\LblPrint\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
