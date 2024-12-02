@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\josep\\source\\repos\\jbowser64\\Label-Printer\\LblPrint\\LblPrint.csproj": {}
+    "C:\\Users\\usjbows\\source\\repos\\jbowser64\\Label-Printer\\LblPrint\\LblPrint.csproj": {}
   },
   "projects": {
-    "C:\\Users\\josep\\source\\repos\\jbowser64\\Label-Printer\\LblPrint\\LblPrint.csproj": {
+    "C:\\Users\\usjbows\\source\\repos\\jbowser64\\Label-Printer\\LblPrint\\LblPrint.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\josep\\source\\repos\\jbowser64\\Label-Printer\\LblPrint\\LblPrint.csproj",
+        "projectUniqueName": "C:\\Users\\usjbows\\source\\repos\\jbowser64\\Label-Printer\\LblPrint\\LblPrint.csproj",
         "projectName": "LblPrint",
-        "projectPath": "C:\\Users\\josep\\source\\repos\\jbowser64\\Label-Printer\\LblPrint\\LblPrint.csproj",
-        "packagesPath": "C:\\Users\\josep\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\josep\\source\\repos\\jbowser64\\Label-Printer\\LblPrint\\obj\\",
+        "projectPath": "C:\\Users\\usjbows\\source\\repos\\jbowser64\\Label-Printer\\LblPrint\\LblPrint.csproj",
+        "packagesPath": "C:\\Users\\usjbows\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\usjbows\\source\\repos\\jbowser64\\Label-Printer\\LblPrint\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\josep\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\usjbows\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

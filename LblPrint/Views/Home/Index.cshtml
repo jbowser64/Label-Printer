@@ -10,17 +10,20 @@
 <body>  
     <div class="label-container">
         <div class="label-outline-left">
-            <label>Enter Part Number:</label> <br />
-            <input type="text" id="PartNum" /><br />
 
-            <label>Enter or Edit Location:</label> <br />
-            <input type="text" id="Loc" /><br />
+            <label>Part Number:</label> <br />
+            <input type="text" id="PartNum" placeholder="Enter Part Number" autofocus/><br />
+            <br />
 
-            <label>Enter FIFO Date(MM/YYYY):</label> <br />
-            <input type="text" id="FIFO" /><br />
+            <label>Location</label> <br />
+            <input type="text" placeholder = "Enter or Edit Location" id="Loc" /><br />
+            <br />
+            <label>FIFO:</label> <br />
+            <input type="text" placeholder="Enter FIFO Date" id="FIFO" /><br />
+            <br />
 
-            <label>Enter Quantity of Labels:</label> <br />
-            <input type="text" id="QTYLbl" /><br />
+            <label>Labels:</label> <br />
+            <input type="text" placeholder="Enter Label QTY" id="QTYLbl" /><br />
 
             <br />
             <input type="submit" id="PrintLabel" value="Print Label(s)" />
