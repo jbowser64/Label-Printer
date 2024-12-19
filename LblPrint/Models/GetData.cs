@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Net;
 using System.Text;
+using System.Net.Http;
 
 namespace LblPrint.Models
 {
@@ -14,7 +15,7 @@ namespace LblPrint.Models
         public string? Bin { get; set; }
 
 
-        public LabelAPI()
+        public static void LabelAPI()
         {
             byte[] zpl = Encoding.UTF8.GetBytes("^xa^cfa,50^fo100,100^fdHello World^fs^xz");
 
@@ -43,6 +44,7 @@ namespace LblPrint.Models
             {
                 Console.WriteLine("Error: {0}", e.Status);
             }
+            
         }
     }
 }
