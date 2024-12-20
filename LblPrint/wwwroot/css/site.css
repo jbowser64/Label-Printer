@@ -29,22 +29,71 @@ body {
 .label-outline-left {
     flex: auto;
     display: inline-block;
+    border: outset;
+    border-color:goldenrod;
+    border-radius: 10px;
+    background-color: midnightblue;
     margin-left: 20%;
     margin-right: auto;
+    color:goldenrod;
+    width: 300px;
+    height: auto;
 }
 .label-outline-right {
     flex: auto;
     display: inline-block;
     border: outset;
-    border-color: grey;
+    border-color: goldenrod;
     border-radius: 10px;
-    background-color: lightgray;
+    background-color: midnightblue;
     float: right;
     margin-left: auto;
     margin-right: 10%;
     width: 220px;
     height:fit-content;
     margin-top: 10%;
+    color: goldenrod;
+}
+.data-table {
+    flex: auto;
+    display: inline-block;
+    border: outset;
+    border-color: goldenrod;
+    border-radius: 10px;
+    background-color: midnightblue;
+    float: right;
+    margin-left: auto;
+    margin-right: 10%;
+    width:400px;
+    height: fit-content;
+    margin-top: 10%;
+    color: goldenrod;
+}
+.data-entry-left {
+    flex: auto;
+    display: inline-block;
+    float:left;
+    border: outset;
+    border-color: goldenrod;
+    border-radius: 10px;
+    background-color: midnightblue;
+    margin-left: 10%;
+    margin-right: auto;
+    color: goldenrod;
+    width: 300px;
+    height: auto;
+}
+.label-entry {
+    width: 80%;
+    height:80%;
+    margin:10%;
+
+}
+.label {
+    margin: 10px;
+    background-color: white;
+    color: black;
+
 }
 .container-fluid {
     background-color:midnightblue;
