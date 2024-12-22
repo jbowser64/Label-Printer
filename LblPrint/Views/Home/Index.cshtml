@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model IEnumerable<GetData>
 
 <div class="text-center">
     <h1 class="display-4">Welcome!</h1>
@@ -32,10 +33,13 @@
 
         <div class="label-outline-right">
             <div class="label">
-            <label id="lblPartNum"> Part Number </label> <br />
-            <label id="lblDesc"> Description </label> <br />
-            <label id="lblLocation"> Warehouse Location </label> <br /> 
-            <label id="lblFIFO"> FIFO Date </label> <br />
+                @foreach(var part in Model)
+                {
+            <label id="lblPartNum"> @part.Material </label> <br />
+                    <label id="lblDesc"> @part.Material_description </label>  <br />
+                    <label id="lblLocation"> @part.Bin </label> < br />
+                    <label id="lblFIFO"> FIFO Date </label> <br />
+                }
             </div>
         </div>
     </div>
