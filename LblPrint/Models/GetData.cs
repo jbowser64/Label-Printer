@@ -20,7 +20,9 @@ namespace LblPrint.Models
             byte[] zpl = Encoding.UTF8.GetBytes("^xa^cfa,50^fo100,100^fdHello World^fs^xz");
 
             // adjust print density (8dpmm), label width (4 inches), label height (6 inches), and label index (0) as necessary
+            // The comment below was the in the original API for Labelary and is unsupported. 
             // var request = (HttpWebRequest)WebRequest.Create("http://api.labelary.com/v1/printers/8dpmm/labels/4x6/0/");
+
             var url = "http://api.labelary.com/v1/printers/8dpmm/labels/4x6/0/";
             using var client = new HttpClient();
             var request = new HttpRequestMessage(HttpMethod.Get, url);
@@ -47,7 +49,28 @@ namespace LblPrint.Models
             {
                 Console.WriteLine("Error: {0}", e.Status);
             }
-            
+
+            /*
+             * Potential use of API later on if does not work. 
+             var url = "http://api.labelary.com/v1/printers/8dpmm/labels/4x6/0/";
+var zpl = Encoding.UTF8.GetBytes("^xa^cfa,50^fo100,100^fdHello World^fs^xz");
+
+using var client = new HttpClient();
+var request = new HttpRequestMessage(HttpMethod.Post, url);
+request.Content = new ByteArrayContent(zpl);
+request.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
+
+try
+{
+  var response = await client.SendAsync(request);
+  response.EnsureSuccessStatusCode();
+  // Handle successful response here
+}
+catch (HttpRequestException e)
+{
+  Console.WriteLine("Error: {0}", e.Status);
+}
+             */
         }
     }
 }
