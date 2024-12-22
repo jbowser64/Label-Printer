@@ -20,7 +20,10 @@ namespace LblPrint.Models
             byte[] zpl = Encoding.UTF8.GetBytes("^xa^cfa,50^fo100,100^fdHello World^fs^xz");
 
             // adjust print density (8dpmm), label width (4 inches), label height (6 inches), and label index (0) as necessary
-            var request = (HttpWebRequest)WebRequest.Create("http://api.labelary.com/v1/printers/8dpmm/labels/4x6/0/");
+            // var request = (HttpWebRequest)WebRequest.Create("http://api.labelary.com/v1/printers/8dpmm/labels/4x6/0/");
+            var url = "http://api.labelary.com/v1/printers/8dpmm/labels/4x6/0/";
+            using var client = new HttpClient();
+            var request = new HttpRequestMessage(HttpMethod.Get, url);
             request.Method = "POST";
             // request.Accept = "application/pdf"; // omit this line to get PNG images back
             request.ContentType = "application/x-www-form-urlencoded";
