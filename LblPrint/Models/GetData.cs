@@ -5,9 +5,44 @@ using System.Data;
 using System.Net;
 using System.Text;
 using System.Net.Http;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Microsoft.SqlServer.Server;
+using Microsoft.SqlServer;
+using Microsoft.Data.SqlClient;
+
 
 namespace LblPrint.Models
 {
+    public class PartModel
+    {
+        readonly List<GetData> partslist = new List<GetData>();
+        public void GetPartData(string x)
+        {
+            try
+            {
+                string connectString = "";
+                Microsoft.Data.SqlClient.SqlConnection con = new Microsoft.Data.SqlClient.SqlConnection(connectString);
+                con.Open();
+                string query = $"Select * from material where material = {x}";
+                Microsoft.Data.SqlClient.SqlCommand cmd = new Microsoft.Data.SqlClient.SqlCommand(query, con);
+                Microsoft.Data.SqlClient.SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    GetData parts = new GetData();
+                    parts.Material = reader.GetString(1);
+                    parts.Material_description = reader.GetString(2);
+                    parts.Bin = reader.GetString(3);  
+                    
+                    partslist.Add(parts);
+                }
+            }
+
+            catch (Exception ex)
+            {S
+
+            }
+        }
+    }
     public class GetData()
     {
         public string? Material { get; set; }
