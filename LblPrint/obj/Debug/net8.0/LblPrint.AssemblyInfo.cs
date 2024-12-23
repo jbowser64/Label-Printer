@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LblPrint")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4696042cd293e31022e9bfd2787ebfdf0a234f97")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+370c92f424c0af1cfed8b64871f9fe417d78406e")]
 [assembly: System.Reflection.AssemblyProductAttribute("LblPrint")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LblPrint")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

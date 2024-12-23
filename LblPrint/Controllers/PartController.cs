@@ -9,12 +9,13 @@ namespace LblPrint.Controllers
     {
         private PartsDatabaseContext db = new PartsDatabaseContext();
 
-        public IActionResult Index(string partNum)
+        
+        public IActionResult Index()
         {
-            
+            string partNum = Request.Form["partNum"].ToString();
             var parts =
-            from e in db.GetData
-            where e.Material == partNum.ToString()
+            from e in db.Parts
+            where e.Material == partNum
             select e;
 
             parts.ToArray(); 

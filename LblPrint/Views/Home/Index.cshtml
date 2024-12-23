@@ -13,7 +13,7 @@
         <div class="label-outline-left">
             <div class="label-entry">
             <label>Part Number:</label> <br />
-            <input type="text" id="PartNum" name="partNum" placeholder="Enter Part Number" autofocus/><br />
+            <input type="text" id="PartNum" name= "partNum" placeholder="Enter Part Number" autofocus/><br />
             <br />
 
             <label>Location</label> <br />
@@ -34,12 +34,13 @@
         <div class="label-outline-right">
             <div class="label">
                
-                
-            <label id="lblPartNum"> part.Material </label> <br />
-                    <label id="lblDesc"> part.Material_description </label>  <br />
-                    <label id="lblLocation"> part.Bin </label> < br />
+            @foreach(var part in Model)
+            {    
+                    <label id="lblPartNum"> @part.Material </label> <br />
+                    <label id="lblDesc"> @part.Material_description </label>  <br />
+                    <label id="lblLocation"> @part.Bin </label> <br />
                     <label id="lblFIFO"> FIFO Date </label> <br />
-                
+            }
             </div>
         </div>
     </div>
