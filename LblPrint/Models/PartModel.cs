@@ -16,18 +16,11 @@ using Azure.Core;
 
 namespace LblPrint.Models
 { 
-    public class Part()
+    public class PartModel()
     {
         public string? Material { get; set; }
         public string? Material_description { get; set; }
         public string? Bin { get; set; }
-    }
-
-
-    public class partDBContext : DbContext
-    {
-        public partDBContext() { }
-        public DbSet<Part> GetData { get; set; }
     }
 }
         

@@ -1,12 +1,13 @@
-﻿using LblPrint.Models;
+﻿using LblPrint.Data;
+using LblPrint.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace LblPrint.Controllers
 {
-    public class Parts : Controller
+    public class PartController : Controller
     {
-        private partDBContext db = new partDBContext();
+        private PartsDatabaseContext db = new PartsDatabaseContext();
 
         public IActionResult Index(string partNum)
         {
