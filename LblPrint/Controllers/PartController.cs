@@ -12,9 +12,20 @@ namespace LblPrint.Controllers
         
         public IActionResult PrintLabel()
         {
-            var part = new PartModel()
+            /*string partNum = Request.Form["partNum"].ToString();
+            var parts =
+            from e in db.Parts
+            where e.Material == partNum
+            select e;
+
+            parts.ToArray();
+
+            return View(parts);
+          */ var part = new PartModel()
             {
-                Material = "332042-0050",
+
+
+                Material = "",
                 Material_description = "description",
                 Bin = "bin"
 
