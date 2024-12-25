@@ -2,19 +2,21 @@
 
 *@
 @{
-    
+  
 }
 @model PartModel
+<script src="site.js"></script>
 <div class="text-center">
     <h1 class="display-4">Welcome!</h1>
 
 </div>
+
 <body>
     <div class="label-container">
         <div class="label-outline-left">
             <div class="label-entry">
                 <label>Part Number:</label> <br />
-                <input type="text" id="PartNum" name="partNum" placeholder="Enter Part Number" autofocus /><br />
+                <input type="text" id="partNum" name="partNum" placeholder="Enter Part Number" autofocus /><br />
                 <br />
 
                 <label>Location</label> <br />
@@ -31,6 +33,10 @@
                 <input type="submit" id="PrintLabel" value="Print Label(s)" />
             </div>
         </div>
+
+
+    
+
 
         <div class="label-outline-right">
             <div class="label">
