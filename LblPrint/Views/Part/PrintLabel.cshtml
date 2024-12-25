@@ -1,14 +1,14 @@
 ﻿@*
-    
+
 *@
 @{
+    
 }
 @model PartModel
 <div class="text-center">
     <h1 class="display-4">Welcome!</h1>
 
 </div>
-
 <body>
     <div class="label-container">
         <div class="label-outline-left">
@@ -37,9 +37,9 @@
 
               
                     <label id="lblPartNum"> @Model.Material </label> <br />
-                    <label id="lblDesc"> art.Material_description </label>  <br />
-                    <label id="lblLocation"> part.Bin </label> <br />
-                    <label id="lblFIFO"> FIFO Date </label> <br />
+                    <label id="lblDesc"> @Model.Material_description </label>  <br />
+                    <label id="lblLocation"> @Model.Bin </label> <br />
+                    <label id="lblFIFO">  </label> <br />
                
             </div>
         </div>
