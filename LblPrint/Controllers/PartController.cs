@@ -10,8 +10,15 @@ namespace LblPrint.Controllers
         private PartsDatabaseContext db = new PartsDatabaseContext();
 
         
-        public IActionResult Index()
+        public IActionResult PrintLabel()
         {
+            var part = new PartModel()
+            {
+                Material = "332042-0050",
+
+            };
+            return View(part); 
+            /* 
             string partNum = Request.Form["partNum"].ToString();
             var parts =
             from e in db.Parts
@@ -22,6 +29,7 @@ namespace LblPrint.Controllers
             
 
             return View(parts);
+            */
         }
     }
 }

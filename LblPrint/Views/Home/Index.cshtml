@@ -9,39 +9,5 @@
 </div>
 
 <body>  
-    <div class="label-container">
-        <div class="label-outline-left">
-            <div class="label-entry">
-            <label>Part Number:</label> <br />
-            <input type="text" id="PartNum" name= "partNum" placeholder="Enter Part Number" autofocus/><br />
-            <br />
-
-            <label>Location</label> <br />
-            <input type="text" placeholder = "Enter or Edit Location" id="Loc" /><br />
-            <br />
-            <label>FIFO:</label> <br />
-            <input type="text" placeholder="Enter FIFO Date" id="FIFO" /><br />
-            <br />
-
-            <label>Labels:</label> <br />
-            <input type="text" placeholder="Enter Label QTY" id="QTYLbl" /><br />
-
-            <br />
-            <input type="submit" id="PrintLabel" value="Print Label(s)" />
-            </div>
-        </div>
-
-        <div class="label-outline-right">
-            <div class="label">
-               
-            @foreach(var part in Model)
-            {    
-                    <label id="lblPartNum"> @part.Material </label> <br />
-                    <label id="lblDesc"> @part.Material_description </label>  <br />
-                    <label id="lblLocation"> @part.Bin </label> <br />
-                    <label id="lblFIFO"> FIFO Date </label> <br />
-            }
-            </div>
-        </div>
-    </div>
+   <p>Welcome to my side project.</p>
 </body>

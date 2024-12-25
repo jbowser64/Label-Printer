@@ -17,41 +17,45 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = LblPrint
 build_property.RootNamespace = LblPrint
-build_property.ProjectDir = C:\Users\usjbows\source\repos\jbowser64\Label-Printer\LblPrint\
+build_property.ProjectDir = C:\Users\josep\source\repos\jbowser64\Label-Printer\LblPrint\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\usjbows\source\repos\jbowser64\Label-Printer\LblPrint
+build_property.MSBuildProjectDirectory = C:\Users\josep\source\repos\jbowser64\Label-Printer\LblPrint
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/usjbows/source/repos/jbowser64/Label-Printer/LblPrint/Views/Home/Index.cshtml]
+[C:/Users/josep/source/repos/jbowser64/Label-Printer/LblPrint/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/usjbows/source/repos/jbowser64/Label-Printer/LblPrint/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+[C:/Users/josep/source/repos/jbowser64/Label-Printer/LblPrint/Views/Home/PartsDB.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQYXJ0c0RCLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/usjbows/source/repos/jbowser64/Label-Printer/LblPrint/Views/Shared/Error.cshtml]
+[C:/Users/josep/source/repos/jbowser64/Label-Printer/LblPrint/Views/Part/PrintLabel.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFydFxQcmludExhYmVsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/josep/source/repos/jbowser64/Label-Printer/LblPrint/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/usjbows/source/repos/jbowser64/Label-Printer/LblPrint/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/josep/source/repos/jbowser64/Label-Printer/LblPrint/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/usjbows/source/repos/jbowser64/Label-Printer/LblPrint/Views/_ViewImports.cshtml]
+[C:/Users/josep/source/repos/jbowser64/Label-Printer/LblPrint/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/usjbows/source/repos/jbowser64/Label-Printer/LblPrint/Views/_ViewStart.cshtml]
+[C:/Users/josep/source/repos/jbowser64/Label-Printer/LblPrint/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/usjbows/source/repos/jbowser64/Label-Printer/LblPrint/Views/Shared/_Layout.cshtml]
+[C:/Users/josep/source/repos/jbowser64/Label-Printer/LblPrint/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-ul8q0n3fu6

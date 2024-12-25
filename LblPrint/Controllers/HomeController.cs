@@ -23,7 +23,7 @@ namespace LblPrint.Controllers
         }
 
 
-        public IActionResult Privacy()
+        public IActionResult PartsDB()
         {
             return View();
         }
