@@ -15,8 +15,11 @@ namespace LblPrint.Controllers
             var part = new PartModel()
             {
                 Material = "332042-0050",
+                Material_description = "description",
+                Bin = "bin"
 
             };
+            
             return View(part); 
             /* 
             string partNum = Request.Form["partNum"].ToString();
