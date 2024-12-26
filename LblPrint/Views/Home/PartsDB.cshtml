@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Parts and Info";
 }
+@model IEnumerable<PartModel>
 <h1>@ViewData["Title"]</h1>
 
 <body>
@@ -8,8 +9,8 @@
         <div class="data-entry-left">
             <div class="label-entry">
                 <label>Part Number:</label> <br />
-            <input type="text" id="PartNum" placeholder="Enter Part Number" autofocus /><br />
-            <br />
+                <input type="text" id="PartNum" placeholder="Enter Part Number" autofocus /><br />
+                <br />
             </div>
 
         </div>
@@ -24,9 +25,12 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Material</td>
-                        <td>Description</td>
-                        <td>Bin</td>
+                        @foreach (var item in Model)
+                        {
+                            <td>@item.Material</td>
+                            <td>@item.Material_description</td>
+                            <td>@item.Bin</td>
+                        }
                     </tr>
                 </tbody>
             </table>

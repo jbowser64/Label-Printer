@@ -2,9 +2,10 @@
 
 *@
 @{
-  
+
 }
-@model PartModel
+
+@model IEnumerable<PartModel>; 
 <script src="site.js"></script>
 <div class="text-center">
     <h1 class="display-4">Welcome!</h1>
@@ -16,7 +17,7 @@
         <div class="label-outline-left">
             <div class="label-entry">
                 <label>Part Number:</label> <br />
-                <input type="text" id="partNum" name="partNum" placeholder="Enter Part Number" autofocus /><br />
+                <input action="/ParController/PrintLabel" formmethod="post" type="text" id="partNum" name="partNum" placeholder="Enter Part Number" autofocus /><br />
                 <br />
 
                 <label>Location</label> <br />
@@ -41,12 +42,13 @@
         <div class="label-outline-right">
             <div class="label">
 
-              
-                    <label id="lblPartNum"> @Model.Material </label> <br />
-                    <label id="lblDesc"> @Model.Material_description </label>  <br />
-                    <label id="lblLocation"> @Model.Bin </label> <br />
+              @foreach (var item in Model) 
+              {
+                    <label id="lblPartNum"> @item.Material </label> <br />
+                    <label id="lblDesc"> @item.Material_description </label>  <br />
+                    <label id="lblLocation"> @item.Bin </label> <br />
                     <label id="lblFIFO">  </label> <br />
-               
+              }
             </div>
         </div>
     </div>

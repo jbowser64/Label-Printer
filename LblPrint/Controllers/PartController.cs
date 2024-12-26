@@ -9,29 +9,23 @@ namespace LblPrint.Controllers
     {
         private PartsDatabaseContext db = new PartsDatabaseContext();
 
-        
-        public IActionResult PrintLabel()
+        [HttpPost]
+        public IActionResult PrintLabel(string partNum)
         {
-            /*string partNum = Request.Form["partNum"].ToString();
-            var parts =
+            List<PartModel> parts = new List<PartModel>();
+
+            var result =
             from e in db.Parts
             where e.Material == partNum
-            select e;
-
-            parts.ToArray();
-
-            return View(parts);
-          */ var part = new PartModel()
+            select new PartModel
             {
-
-
-                Material = "",
-                Material_description = "description",
-                Bin = "bin"
-
+                Material = e.Material,
+                Material_description = e.Material_description,
+                Bin = e.Bin
             };
-            
-            return View(part); 
+            parts = result.ToList();
+            return View(parts);
+
             /* 
             string partNum = Request.Form["partNum"].ToString();
             var parts =
