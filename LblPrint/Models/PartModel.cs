@@ -11,6 +11,7 @@ using Microsoft.SqlServer;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Azure.Core;
+using System.ComponentModel.DataAnnotations;
 
 
 
@@ -21,6 +22,9 @@ namespace LblPrint.Models
         public string? Material { get; set; }
         public string? Material_description { get; set; }
         public string? Bin { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime FIFO { get; set; }
     }
 }
         
