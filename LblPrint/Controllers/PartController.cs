@@ -7,6 +7,13 @@ namespace LblPrint.Controllers
 {
     public class PartController : Controller
     {
+        private readonly PartsDatabaseContext _context;
+
+        public PartController(PartsDatabaseContext context)
+        {
+            _context = context;
+        }
+
         private PartsDatabaseContext db = new PartsDatabaseContext();
 
         [HttpPost]
