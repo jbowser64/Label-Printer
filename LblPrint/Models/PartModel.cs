@@ -19,6 +19,7 @@ namespace LblPrint.Models
 { 
     public class PrintPartModel()
     {
+        [Key]
         public string? Material { get; set; }
         public string? Description { get; set; }
         public string? Bin { get; set; }
@@ -29,6 +30,8 @@ namespace LblPrint.Models
 
     public class ViewPartModel()
     {
+        [Key]
+
         public string? Material { get; set; }
         public string? Description { get; set; }
         public string? Bin { get; set; }
