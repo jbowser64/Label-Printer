@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using System.Reflection.Metadata;
 using Azure.Core;
+using LblPrint.Data;
 using LblPrint.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
@@ -11,12 +12,18 @@ namespace LblPrint.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+       // private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly PartsDatabaseContext _context;
+
+        public HomeController(PartsDatabaseContext context)
         {
-            _logger = logger;
+            _context = context;
         }
+        //public HomeController(ILogger<HomeController> logger)
+        //{
+        //    _logger = logger;
+        //}
         public IActionResult Index()
         {
             return View();
@@ -25,7 +32,9 @@ namespace LblPrint.Controllers
 
         public IActionResult PartsDB()
         {
-            return View();
+            var parts = _context.ViewParts.ToList();
+            return View(parts);
+          
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
