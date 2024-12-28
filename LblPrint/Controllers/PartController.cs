@@ -14,15 +14,18 @@ namespace LblPrint.Controllers
             _context = context;
         }
 
-        private PartsDatabaseContext db = new PartsDatabaseContext();
-
         [HttpPost]
-        public IActionResult PrintLabel(string partNum)
+        public IActionResult PrintLabel()
         {
-            List<PartModel> parts = new List<PartModel>();
+            //string partNum
+            //List<PartModel> 
+                var parts = _context.Parts.ToList();
+            return View(parts); 
 
-            var result =
-            from e in db.Parts
+
+
+          /*  var result =
+            from e in PartModel
             where e.Material == partNum
             select new PartModel
             {

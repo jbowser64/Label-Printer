@@ -17,14 +17,31 @@ using System.ComponentModel.DataAnnotations;
 
 namespace LblPrint.Models
 { 
-    public class PartModel()
+    public class PrintPartModel()
     {
         public string? Material { get; set; }
-        public string? Material_description { get; set; }
+        public string? Description { get; set; }
         public string? Bin { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime FIFO { get; set; }
+    }
+
+    public class ViewPartModel()
+    {
+        public string? Material { get; set; }
+        public string? Description { get; set; }
+        public string? Bin { get; set; }
+
+        public string? PLnt { get; set; }
+
+        public string? SLoc { get; set; }
+
+        public string? ABC { get; set; }
+        public int? On_Hand { get; set; }
+        public DateOnly? Last_Count { get; set; }
+        public int? Std_Cst { get; set; } 
+
     }
 }
         

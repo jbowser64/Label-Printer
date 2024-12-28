@@ -5,7 +5,7 @@
     ViewData["Title"] = "Label Printer";
 }
 
-@model IEnumerable<PartModel>; 
+@model IEnumerable<PrintPartModel>; 
 <script src="site.js"></script>
 <div class="text-center">
     <h1 class="display-4">Welcome!</h1>
@@ -45,7 +45,7 @@
               @foreach (var item in Model) 
               {
                     <label id="lblPartNum"> @item.Material </label> <br />
-                    <label id="lblDesc"> @item.Material_description </label>  <br />
+                    <label id="lblDesc"> @item.Description </label>  <br />
                     <label id="lblLocation"> @item.Bin </label> <br />
                     <label id="lblFIFO">  </label> <br />
               }

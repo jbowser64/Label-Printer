@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Parts and Info";
 }
-@model IEnumerable<PartModel>
+@model IEnumerable<ViewPartModel>
 
 <h1>@ViewData["Title"]</h1>
 
@@ -22,6 +22,12 @@
                         <th style="margin:1px;">Material</th>
                         <th style="margin:1px;">Description</th>
                         <th style="margin:1px;">Bin</th>
+                        <th style="margin:1px;">Plant</th>
+                        <th style="margin:1px;">SLOC</th>
+                        <th style="margin:1px;">QTY On Hand</th>
+                        <th style="margin:1px;">ABC</th>
+                        <th style="margin:1px;">Cost</th>
+                        <th style="margin:1px;">Last Count</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,8 +35,15 @@
                         @foreach (var item in Model)
                         {
                             <td>@item.Material</td>
-                            <td>@item.Material_description</td>
+                            <td>@item.Description</td>
                             <td>@item.Bin</td>
+                            <td>@item.PLnt</td>
+                            <td>@item.SLoc</td>
+                            <td>@item.On_Hand</td>
+                            <td>@item.ABC</td>
+                            <td>@item.Std_Cst</td>
+                            <td>@item.Last_Count</td>
+
                         }
                     </tr>
                 </tbody>

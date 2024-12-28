@@ -8,7 +8,12 @@ namespace LblPrint
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            builder.Services.AddDbContext<PartsDatabaseContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.")));
+
+            builder.Services.AddDbContext<PartsDatabaseContext>(options => 
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") 
+            ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.")));
+
+
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
