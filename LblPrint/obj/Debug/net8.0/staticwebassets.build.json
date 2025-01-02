@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "s2p3ftsgHy3x5iF9Ex9iN5eSXv5wcWwK6QJExFSDzUM=",
+  "Hash": "j8LIU2nUcBcV/DrsKdoJi6ZWaf9crrze933IQfo8k5Q=",
   "Source": "LblPrint",
   "BasePath": "_content/LblPrint",
   "Mode": "Default",
@@ -1317,6 +1317,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\josep\\source\\repos\\jbowser64\\Label-Printer\\LblPrint\\wwwroot\\TALogo.png",
+      "SourceId": "LblPrint",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\josep\\source\\repos\\jbowser64\\Label-Printer\\LblPrint\\wwwroot\\",
+      "BasePath": "_content/LblPrint",
+      "RelativePath": "TALogo#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "q8pkkwfjfv",
+      "Integrity": "yoAPB1cvHcpEEqcEtSvowkGznDKEVzgpxu3534gxNis=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\TALogo.png"
     }
   ],
   "Endpoints": [
@@ -6401,6 +6422,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-16aFlqtpsG9RyieKZUUUjkJpqTgcJtWXwT312I4Iz1s="
+        }
+      ]
+    },
+    {
+      "Route": "TALogo.png",
+      "AssetFile": "C:\\Users\\josep\\source\\repos\\jbowser64\\Label-Printer\\LblPrint\\wwwroot\\TALogo.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "32491"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"yoAPB1cvHcpEEqcEtSvowkGznDKEVzgpxu3534gxNis=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 02 Jan 2025 00:10:28 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-yoAPB1cvHcpEEqcEtSvowkGznDKEVzgpxu3534gxNis="
+        }
+      ]
+    },
+    {
+      "Route": "TALogo.q8pkkwfjfv.png",
+      "AssetFile": "C:\\Users\\josep\\source\\repos\\jbowser64\\Label-Printer\\LblPrint\\wwwroot\\TALogo.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "32491"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"yoAPB1cvHcpEEqcEtSvowkGznDKEVzgpxu3534gxNis=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 02 Jan 2025 00:10:28 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "q8pkkwfjfv"
+        },
+        {
+          "Name": "label",
+          "Value": "TALogo.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-yoAPB1cvHcpEEqcEtSvowkGznDKEVzgpxu3534gxNis="
         }
       ]
     }

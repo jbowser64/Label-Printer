@@ -17,7 +17,7 @@ public partial class PartsAndLocationsContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer("Data Source=localhost\\SQLEXPRESS;Initial Catalog=PartsAndLocations;Integrated Security=True;Encrypt=True;Trust Server Certificate=True;");
-
+    //Data Source=localhost\\SQLEXPRESS;Initial Catalog=PartsAndLocations;Integrated Security=True;Encrypt=True;Trust Server Certificate=True;
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<PartsAndLocation>(entity =>
