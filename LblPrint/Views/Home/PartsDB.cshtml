@@ -1,17 +1,18 @@
-﻿@{
-    ViewData["Title"] = "Parts and Info";
+﻿﻿@{
+    //ViewData["Title"] = "Parts and Info";
 }
-@model IEnumerable<ViewPartModel>
+@model IEnumerable<PartsAndLocation>
 
-<h1>@ViewData["Title"]</h1>
+
 
 <body>
     <div class="label-container">
         <div class="data-entry-left">
             <div class="label-entry">
-                <label>Part Number:</label> <br />
-                <input type="text" id="PartNum" placeholder="Enter Part Number" autofocus /><br />
-                <br />
+                <form asp-controller="Home" asp-action="PartsDB">
+                    <label>Part Number:<br /><input type="text" name="searchNum" placeholder="Enter Part Number" autofocus /></label>  <br />
+                    <button class="submit_button " type="submit">Search Part</button><br />
+                </form>
             </div>
 
         </div>
@@ -19,30 +20,45 @@
             <table class="part-table">
                 <thead>
                     <tr>
-                        <th style="margin:1px;">Material</th>
-                        <th style="margin:1px;">Description</th>
-                        <th style="margin:1px;">Bin</th>
-                        <th style="margin:1px;">Plant</th>
-                        <th style="margin:1px;">SLOC</th>
-                        <th style="margin:1px;">QTY On Hand</th>
-                        <th style="margin:1px;">ABC</th>
-                        <th style="margin:1px;">Cost</th>
-                        <th style="margin:1px;">Last Count</th>
+                        <th style="margin-right:10px;">Material</th>
+                        <th style="margin-right:10px;">Description</th>
+                        <th style="margin-right:10px;">Bin</th>
+                        <th style="margin-right:10px;">Plant</th>
+                        <th style="margin-right:10px;">SLOC</th>
+                        <th style="margin-right:10px;">QTY On Hand</th>
+                        <th style="margin-right:10px;">ABC</th>
+                        <th style="margin-right:10px;">Cost</th>
+                        <th style="margin-right:10px;">Last Count</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        @foreach (var item in Model)
+                        @if (Model == null)
                         {
-                            <td>@item.Material</td>
-                            <td>@item.Description</td>
-                            <td>@item.Bin</td>
-                            <td>@item.Plant</td>
-                            <td>@item.SLOC</td>
-                            <td>@item.QTY</td>
-                            <td>@item.ABC</td>
-                            <td>@item.Cost</td>
-                            <td>@item.Last_Count</td>
+                            <td>Material</td>
+                            <td>Description</td>
+                            <td>Bin</td>
+                            <td>Plant</td>
+                            <td>Sloc</td>
+                            <td>Qty</td>
+                            <td>Abc</td>
+                            <td>Cost</td>
+                            <td>LastCount</td>
+                        }
+                        
+                        else 
+
+                        foreach (var item in Model)
+                        {
+                                <td class="td">@item.Material</td>
+                                <td class="td">@item.Description</td>
+                                <td class="td">@item.Bin</td>
+                                <td class="td">@item.Plant</td>
+                                <td class="td">@item.Sloc</td>
+                                <td class="td">@item.Qty</td>
+                                <td class="td">@item.Abc</td>
+                                <td class="td">@item.Cost</td>
+                                <td class="td">@item.LastCount</td>
 
                         }
                     </tr>

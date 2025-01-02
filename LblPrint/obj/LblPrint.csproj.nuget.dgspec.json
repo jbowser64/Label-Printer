@@ -71,9 +71,9 @@
               "target": "Package",
               "version": "[9.0.0, )"
             },
-            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+            "entityframework": {
               "target": "Package",
-              "version": "[8.0.7, )"
+              "version": "[6.5.1, )"
             }
           },
           "imports": [

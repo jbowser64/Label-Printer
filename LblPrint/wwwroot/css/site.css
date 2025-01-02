@@ -1,44 +1,47 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
+
 .label-container {
-    margin-top:5%;
-    width:80%;
-    height:auto;
-    font-size:large;
+    margin-top: 5%;
+    width: 80%;
+    height: auto;
+    font-size: large;
 }
+
 .label-outline-left {
     flex: auto;
     display: inline-block;
     border: outset;
-    border-color:goldenrod;
+    border-color: goldenrod;
     border-radius: 10px;
     background-color: midnightblue;
     margin-left: 20%;
     margin-right: auto;
-    color:goldenrod;
+    color: goldenrod;
     width: 300px;
     height: auto;
 }
+
 .label-outline-right {
     flex: auto;
     display: inline-block;
@@ -50,10 +53,11 @@ body {
     margin-left: auto;
     margin-right: 10%;
     width: 220px;
-    height:fit-content;
+    height: fit-content;
     margin-top: 10%;
     color: goldenrod;
 }
+
 .data-table {
     flex: auto;
     display: inline-block;
@@ -64,15 +68,16 @@ body {
     float: right;
     margin-left: auto;
     margin-right: 10%;
-    width:400px;
+    width: fit-content;
     height: fit-content;
     margin-top: 10%;
     color: goldenrod;
 }
+
 .data-entry-left {
     flex: auto;
     display: inline-block;
-    float:left;
+    float: left;
     border: outset;
     border-color: goldenrod;
     border-radius: 10px;
@@ -83,40 +88,61 @@ body {
     width: 300px;
     height: auto;
 }
+
 .label-entry {
     width: 80%;
-    height:80%;
-    margin:10%;
-
+    height: 80%;
+    margin: 10%;
 }
+
 .label {
     margin: 10px;
     background-color: white;
     color: black;
-
 }
+
 .container-fluid {
-    background-color:midnightblue;
-    border-style:outset;
-    border-color:goldenrod;
-
-
+    background-color: midnightblue;
+    border-style: outset;
+    border-color: goldenrod;
 }
+
 .navbar-brand {
     background-color: goldenrod;
-    color:midnightblue;
-    border-style:outset;
-    border-color:midnightblue;
-    border-radius:5px;
-    margin-right:1%;
-    padding-left:2%;
+    color: midnightblue;
+    border-style: outset;
+    border-color: midnightblue;
+    border-radius: 5px;
+    margin-right: 1%;
+    padding-left: 2%;
     padding-right: 2%;
 }
+
 .nav-item {
     background-color: goldenrod;
     color: midnightblue;
     border-style: outset;
-    border-radius:5px;
+    border-radius: 5px;
     border-color: midnightblue;
-    margin-left:1%;
+    margin-left: 1%;
+}
+.submit_button {
+    background-color: goldenrod;
+    color: midnightblue;
+    border-style: outset;
+    border-radius: 5px;
+    border-color: midnightblue;
+    margin-top:10px;
+}
+.td {
+    width:fit-content;
+    color:white;
+    padding: 10px;
+    text-align:center;
+    font-size:small;
+}
+th {
+    width:fit-content;
+    padding:5px;
+    text-align:center;
 }

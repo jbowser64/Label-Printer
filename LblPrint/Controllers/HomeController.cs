@@ -1,40 +1,63 @@
-using System.Diagnostics;
-using System.Reflection.Metadata;
-using Azure.Core;
-using LblPrint.Data;
-using LblPrint.Models;
+using DataFirstTest.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
-using Microsoft.CodeAnalysis;
-using Microsoft.EntityFrameworkCore.Storage;
+using System.Data.Entity;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
+using System.Diagnostics;
 
-namespace LblPrint.Controllers
+namespace DataFirstTest.Controllers
 {
     public class HomeController : Controller
     {
-       // private readonly ILogger<HomeController> _logger;
+        private readonly PartsAndLocationsContext _context;
 
-        private readonly PartsDatabaseContext _context;
-
-        public HomeController(PartsDatabaseContext context)
+        public HomeController(PartsAndLocationsContext context)
         {
             _context = context;
         }
-        //public HomeController(ILogger<HomeController> logger)
-        //{
-        //    _logger = logger;
-        //}
-        public IActionResult Index()
+
+        public IActionResult PartsDB(string searchNum)
         {
-            return View();
+            if (_context.PartsAndLocations == null)
+            {
+
+                return Problem($"{searchNum} not located in database");
+            }
+
+            var parts = from p
+                        in _context.PartsAndLocations
+                        select p;
+            if (!String.IsNullOrEmpty(searchNum))
+            {
+                parts = parts.Where(s => s.Material.Contains(searchNum));
+                return View(parts.ToList());
+            }
+            else
+                return View();
+
+           
         }
 
-
-        public IActionResult PartsDB()
+        public IActionResult Index(string printNum)
         {
-            var parts = _context.ViewParts.ToList();
-            return View(parts);
-          
+            if (_context.PartsAndLocations == null)
+            {
+                return Problem($"{printNum} not located in database");
+            }
+
+            var parts = from p
+                        in _context.PartsAndLocations
+                        select p;
+            if (!String.IsNullOrEmpty(printNum))
+            {
+                parts = parts.Where(s => s.Material.Contains(printNum));
+                return View(parts.ToList());
+            }
+
+            //var parts = (from p in _context.PartsAndLocations where p.Material == "332042-0050" select p).ToList();
+            else
+                return View();
+            
+            
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

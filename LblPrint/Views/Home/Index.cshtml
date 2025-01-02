@@ -1,13 +1,70 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    // ViewData["Title"] = "Home";
+    
 }
-
+@model IEnumerable<PartsAndLocation>
 
 <div class="text-center">
-    <h1 class="display-4">Welcome!</h1>
-   
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
 
-<body>  
-   <p>Welcome to my side project.</p>
+<script src="site.js"></script>
+<div class="text-center">
+    <h1 class="display-4">Welcome!</h1>
+
+</div>
+
+<body>
+    <div class="label-container">
+        <div class="label-outline-left">
+            <div class="label-entry">
+
+                
+                 <form asp-controller="Home" asp-action="Index">
+                    <label>Part Number:<br /><input type="text" name="printNum" placeholder="Enter Part Number" autofocus /></label>  <br />
+                    <button class ="submit_button "type="submit">Search Part</button><br />
+                </form>
+                   
+                <br />
+
+                <label>Location</label> <br />
+                <input type="text" placeholder="Enter or Edit Location" id="Loc" /><br />
+                <br />
+                <label>FIFO:</label> <br />
+                <input type="text" placeholder="Enter FIFO Date" id="FIFO" /><br />
+                <br />
+
+                <label>Labels:</label> <br />
+                <input type="text" placeholder="Enter Label QTY" id="QTYLbl" /><br />
+
+                <br />
+                <input type="submit" class="submit_button" id="PrintLabel" value="Print Label(s)" />
+            </div>
+        </div>
+       
+        <div class="label-outline-right">
+            <div class="label">
+               @if (Model == null)
+                {
+                    <label id="lblPartNum"> Part Number </label> <br />
+                    <label id="lblDesc">  Description </label>  <br />
+                    <label id="lblLocation"> Bin  </label> <br />
+                    <label id="lblFIFO"> FIFO </label> <br />
+                }
+               else 
+
+               
+               foreach(var item in Model)
+               {
+                    <label id="lblPartNum" style="font-size:large;">@item.Material </label> <br />
+                    <label id="lblDesc" style="font-size:small;"> @item.Description </label>  <br />
+                    <label id="lblLocation"> @item.Bin </label> <br />
+                    <label id="lblFIFO"> FIFO: @DateTime.Now.ToString("MMMM yyyy") </label> <br />
+               }
+               
+            </div>
+        </div>
+        
+    </div>
 </body>

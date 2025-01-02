@@ -1,4 +1,4 @@
-namespace LblPrint.Models
+namespace DataFirstTest.Models
 {
     public class ErrorViewModel
     {

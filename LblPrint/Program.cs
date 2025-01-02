@@ -1,7 +1,7 @@
-using LblPrint.Data;
+using DataFirstTest.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace LblPrint
+namespace DataFirstTest
 {
     public class Program
     {
@@ -9,10 +9,9 @@ namespace LblPrint
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddDbContext<PartsDatabaseContext>(options => 
-            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection") 
-            ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.")));
-
+            builder.Services.AddDbContext<PartsAndLocationsContext>(options =>
+           options.UseSqlServer(builder.Configuration.GetConnectionString("Conn")
+           ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.")));
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
