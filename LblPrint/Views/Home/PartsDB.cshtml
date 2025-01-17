@@ -32,9 +32,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
                         @if (Model == null)
                         {
+                         <tr>
                             <td>Material</td>
                             <td>Description</td>
                             <td>Bin</td>
@@ -44,12 +44,14 @@
                             <td>Abc</td>
                             <td>Cost</td>
                             <td>LastCount</td>
+                        </tr>
                         }
                         
                         else 
 
                         foreach (var item in Model)
                         {
+                            <tr>
                                 <td class="td">@item.Material</td>
                                 <td class="td">@item.Description</td>
                                 <td class="td">@item.Bin</td>
@@ -57,11 +59,11 @@
                                 <td class="td">@item.Sloc</td>
                                 <td class="td">@item.Qty</td>
                                 <td class="td">@item.Abc</td>
-                                <td class="td">@item.Cost</td>
+                                <td class="td">$@item.Cost </td>
                                 <td class="td">@item.LastCount</td>
-
+                            </tr>
                         }
-                    </tr>
+                    
                 </tbody>
             </table>
         </div>
