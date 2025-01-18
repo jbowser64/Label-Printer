@@ -24,18 +24,14 @@ public partial class PartsAndLocationsContext : DbContext
         {
             entity.HasNoKey();
 
-            entity.Property(e => e.Abc)
-                .HasMaxLength(50)
-                .HasColumnName("ABC");
+            entity.Property(e => e.Abc).HasMaxLength(50).HasColumnName("ABC");
             entity.Property(e => e.Bin).HasMaxLength(50);
             entity.Property(e => e.Description).HasMaxLength(50);
             entity.Property(e => e.LastCount).HasColumnName("Last_Count");
             entity.Property(e => e.Material).HasMaxLength(50);
             entity.Property(e => e.Plant).HasMaxLength(50);
             entity.Property(e => e.Qty).HasColumnName("QTY");
-            entity.Property(e => e.Sloc)
-                .HasMaxLength(50)
-                .HasColumnName("SLOC");
+            entity.Property(e => e.Sloc).HasMaxLength(50).HasColumnName("SLOC");
         });
 
         OnModelCreatingPartial(modelBuilder);
