@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\josep\\source\\repos\\jbowser64\\Label-Printer\\LblPrint\\wwwroot\\image.png",
+      "PackagePath": "staticwebassets\\image.png"
+    },
+    {
       "Id": "C:\\Users\\josep\\source\\repos\\jbowser64\\Label-Printer\\LblPrint\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
