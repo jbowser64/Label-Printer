@@ -34,3 +34,376 @@ var ApiUrl = "http://api.labelary.com/v1/printers/8dpmm/labels/2x1/0/";
 var zpl = (ApiUrl + desc);
 
 var response = await client.GetAsync($"{zpl}");
+
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------
+// JAVASCRIPT BELOW------------------------------------------------------------------
+$(document).ready(function() {
+
+
+    //have the url update when a different size is selected
+    //Add rotate to the zpl image - either make a css class and add it as a change with
+
+    var timer;
+
+    //Live search on the part number field
+    $('#partnum').on({
+        keyup: function() {
+            //clearTimeout(timer);
+            //var delay = 0;  //milliseconds
+            var partinput = $(this).val();
+            var labelsize = $('#labelsize').val();
+            var numcopies = $('#numcopies').val();
+            var inputval = $('#input1').val();
+
+            //Hide the Printed output if present
+            $('#printresponse').html("");
+
+            //timer = setTimeout(function() {
+            if (partinput !== "") {
+                getMaterialInfo(partinput, labelsize, numcopies, inputval, 'True');
+            }
+
+            //}, delay);
+
+        },
+
+
+        //Send error message if number of results is not 1 otherwise show fields
+        blur: function() {
+            var partinput = $(this).val();
+            var labelsize = $('#labelsize').val();
+            var numcopies = $('#numcopies').val();
+            var listshown = $('#partnumlist').is(':visible');
+            var numresults = $('#labelform').data("numresults");
+            var inputval = $('#input1').val();
+
+            if (numresults > 1 && listshown === true) {
+
+
+            } else {
+                getMaterialInfo(partinput, labelsize, numcopies, inputval, 'False');
+
+            }
+
+            /*
+
+            			if (listshown === true){
+            				partinput = $('#partnumlist li.active').text();
+            			}
+
+            			var numresults = $('#labelform').data("numresults");
+
+            			//alert(numresults);
+
+                            if (partinput !== "" && numresults > 0 ) {
+            					alert(partinput);
+            					getMaterialInfo(partinput, labelsize, numcopies, 'False');
+                            }
+
+            				//if results os
+            */
+
+            /*
+
+                        //$('#partnumlist').fadeOut();
+            			if ($('#labelform').data("numresults") == 1) {
+            				$('#partnumlist').fadeOut();
+            				$("#descinput").show();
+            				$("#locinput").show();
+            				$("#bulkinput").show();
+            			}else{
+
+            				$('#partnumlist').html('<ul><h3 style="color:red";>Enter a Valid Part Number</h3></ul>');
+            				$('#partnumlist').fadeIn();
+
+            			}
+            */
+        },
+
+    });
+
+
+
+    $('#numcopies').on({
+        /*focus: function() {
+				var partinput = $('#partnum').val();
+				var labelsize = $('#labelsize').val();
+	            var numcopies = $('#numcopies').val();
+				//alert("focus" + partinput);
+				if (partinput !== "") {
+					//alert(partinput);
+					getMaterialInfo(partinput, labelsize, numcopies, 'False');
+				}
+			},
+*/
+        change: function() {
+            updatezpl();
+
+        }
+    });
+
+
+    $('#partdesc').on({
+        keyup: function() {
+            updatezpl();
+        }
+    });
+
+    $('#input1').on({
+        keyup: function() {
+            updatezpl();
+        }
+    });
+
+
+    $('#location').on({
+        keyup: function() {
+            updatezpl();
+
+        }
+    });
+
+    $('#bulk').on({
+        change: function() {
+            updatezpl();
+        }
+    });
+
+
+    $('#partnumlist').on('click', 'li', function() {
+        //Get the material number and call the same function in php to get the material and zpl information
+        //alert("working");
+        var partnum = $(this).text();
+        var partPosEnd = partnum.indexOf("  -  ");
+        var partinput = partnum.slice(0, partPosEnd);
+        var labelsize = $('#labelsize').val();
+        var numcopies = $('#numcopies').val();
+        var inputval = $('#input1').val();
+
+        if (partinput !== "") {
+            //alert(partinput);
+            getMaterialInfo(partinput, labelsize, numcopies, inputval, 'False');
+        }
+    });
+
+    //Dropdown selection for the label size
+    $('#labelsize').on("change", function() {
+        var labeltype = $(this).val().toUpperCase();
+        /*var labeltype = $(this).val(); */
+        var fifocheck = labeltype.indexOf('FIFO');
+        var reordercheck = labeltype.indexOf('REORDER');
+        var salescheck = labeltype.indexOf('SALES');
+
+        if (fifocheck > -1) {
+            /*Get the current Month and year*/
+            var monthnumber = (new Date()).getMonth() + 1;
+            var monthname = GetMonthName(monthnumber);
+            var year = (new Date()).getFullYear();
+
+            $("#input1").val(monthname + " " + year);
+            $("#input1label").text("FIFO Date:");
+            $("#input1div").show();
+
+        } else if (reordercheck > -1) {
+            /* Display the input box for the reorder quanitiy  */
+            $("#input1").val("");
+            $("#input1label").text("Reorder Quantity:");
+            $("#input1div").show();
+
+        } else if (salescheck > -1) {
+            /* Display the input box for the reorder quanitiy  */
+            $("#input1").val("");
+            $("#input1label").text("Sales Order:");
+            $("#input1div").show();
+
+        } else {
+            $("#input1div").hide();
+
+        }
+
+        updatezpl();
+
+    });
+
+    //Print label when pressed using zpl and printer ip form the hidden zplform
+    $('#printlabel').click(function(event) {
+        event.preventDefault();
+
+        //Check if the number of results is 1 or else do not print the label
+        if ($('#labelform').data("numresults") == 1) {
+            var printerip = $('#labelpic').data('printerip');
+            var zplstring = $('#labelpic').data('zplstring');
+
+            $.ajax({
+                url: "./php/printlabel.php?mode=print",
+                type: 'POST',
+                data: {
+                    printerip: printerip,
+                    zplstring: zplstring
+                },
+                success: function(printresponse) {
+                    $('#printresponse').html(printresponse);
+                }
+            });
+        } else {
+            $('#partnumlist').html('<ul><h3 style="color:red";>Enter a Valid Part Number</h3></ul>');
+            $('#partnumlist').fadeIn(0);
+            $("#descinput").hide();
+            $("#locinput").hide();
+            $("#bulkinput").hide();
+        }
+
+    });
+
+    //Get the material information for part number input response and fill in the other input fields of material and zpl forms.  Update the picture for the zpl preview
+    function getMaterialInfo(partnum, labelsize, numcopies, inputval, showlist) {
+        // var query = $(this).val();
+        if (partnum !== '') {
+            $.ajax({
+                url: "./php/labelinfo.php?mode=getmat",
+                method: "POST",
+                data: {
+                    partnum: partnum,
+                    labelsize: labelsize,
+                    numcopies: numcopies,
+                    inputval: inputval
+                },
+                dataType: "JSON",
+                ///data: {partnum: partnum},
+                success: function(matdata) {
+
+                    //$('#partnum').val(matdata.partnum);
+                    $('#location').val(matdata.location);
+                    $('#partdesc').val(matdata.partdesc);
+                    $('#bulk').val(matdata.bulk);
+                    $('#labelform').data("numresults", matdata.numresults);
+
+                    //Store zpl information as data attributes for zpl picture div
+                    $('#labelpic').data("zplstring", matdata.zplstring);
+                    $('#labelpic').data("printerip", matdata.printerip);
+                    $('#labelpic').data("zplurl", matdata.zplurl);
+
+                    //$('#zplstring').val(matdata.zplstring);
+                    //$('#printerip').val(matdata.printerip);
+                    //$('#zplurl').val(matdata.zplurl);
+                    $('#zplpreview').attr("src", matdata.zplurl); //Update the picture
+
+                    /*
+
+					//ADDD IN THE CSS CLASS AND TO ARRAY form php
+					//if (matdata.rotateimg == "True"){
+					//	$('#zplpreview').attr({'src': matdata.zplurl, 'class': rotate90}); //Update the picture
+					//}else{
+					//		$('#zplpreview').attr("src", matdata.zplurl); //Update the picture
+
+				//	}
+                    //Show the th added fields
+                    //$("#descinput").show();
+                    //$("#locinput").show();
+                    //$("#bulkinput").show();
+
+                    */
+
+
+
+
+                    /*
+
+
+                    if (matdata.numresults == 1) {
+                        $('#partnum').val(matdata.partnum);
+                        $("#descinput").show();
+                        $("#locinput").show();
+                        $("#bulkinput").show();
+                        $('#partnumlist').fadeOut();
+
+                    } else if (matdata.numresults === 0) {
+                        $('#partnumlist').html('<ul><h3 style="color:red";>Enter a Valid Part Number</h3></ul>');
+                        $('#partnumlist').fadeIn();
+                        $("#descinput").hide();
+                        $("#locinput").hide();
+                        $("#bulkinput").hide();
+                    } else if (matdata.numresults > 1) {
+
+                        if (showlist == 'True') {
+                            $('#partnumlist').fadeIn();
+                            $('#partnumlist').html(matdata.partlist);
+                            $("#descinput").hide();
+                            $("#locinput").hide();
+                            $("#bulkinput").hide();
+                        }else{
+                            $('#partnumlist').html('<ul><h3 style="color:red";>Enter a Valid Part Number</h3></ul>');
+                            $('#partnumlist').fadeIn();
+                            $("#descinput").hide();
+                            $("#locinput").hide();
+                            $("#bulkinput").hide();
+                        }
+                    }
+*/
+
+
+
+                    //Check to see if if the dropdown should be shown or not
+                    if (showlist == 'True') {
+                        $('#partnumlist').fadeIn(0);
+                        $('#partnumlist').html(matdata.partlist);
+                        $("#descinput").hide();
+                        $("#locinput").hide();
+                        $("#bulkinput").hide();
+                    } else {
+
+                        //Show the the added fields
+                        if (matdata.numresults == 1) {
+                            $('#partnum').val(matdata.partnum);
+                            $("#descinput").show();
+                            $("#locinput").show();
+                            $("#bulkinput").show();
+                            $('#partnumlist').fadeOut(0);
+
+                        } else if (matdata.numresults !== 1) {
+                            //$('#partnumlist').fadeIn();
+                            $('#partnumlist').html('<ul><h3 style="color:red";>Enter a Valid Part Number</h3></ul>');
+                            $('#partnumlist').fadeIn(0);
+                            $("#descinput").hide();
+                            $("#locinput").hide();
+                            $("#bulkinput").hide();
+
+                        }
+                    }
+
+
+                }
+            });
+        }
+    }
+
+
+
+    // Get the material information for part number input response and fill in
+    // the other input fields of material and zpl forms.  Update the picture for the zpl preview
+    function updatezpl() {
+        var labeldata = $('#labelform').serializeArray();
+
+        $.ajax({
+            url: "./php/labelinfo.php?mode=getzpl",
+            method: "POST",
+            dataType: "JSON",
+            data: labeldata,
+            success: function(data) {
+                $('#labelpic').data("zplstring", data.zplstring);
+                $('#labelpic').data("printerip", data.printerip);
+                $('#labelpic').data("zplurl", data.zplurl);
+                $('#zplpreview').attr("src", data.zplurl); //Update the picture
+            }
+        });
+    }
+
+
+    //Convert month number to month word
+    function GetMonthName(monthnumber) {
+        var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        return months[monthnumber - 1];
+    }
+
+});
