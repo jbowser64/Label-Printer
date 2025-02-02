@@ -52,7 +52,7 @@ body {
     float: right;
     margin-left: auto;
     margin-right: 10%;
-    width: 220px;
+    width: 245px;
     height: fit-content;
     margin-top: 10%;
     color: goldenrod;
@@ -65,19 +65,18 @@ body {
     border-color: goldenrod;
     border-radius: 10px;
     background-color: midnightblue;
-    float: right;
     margin-left: auto;
     margin-right: 10%;
     width: fit-content;
     height: fit-content;
     margin-top: 10%;
     color: goldenrod;
+    
 }
 
 .data-entry-left {
     flex: auto;
     display: inline-block;
-    float: left;
     border: outset;
     border-color: goldenrod;
     border-radius: 10px;
@@ -99,6 +98,8 @@ body {
     margin: 10px;
     background-color: white;
     color: black;
+    width: 220px;
+    
 }
 
 .container-fluid {

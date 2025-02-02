@@ -61,13 +61,13 @@
                         <label id="lblDesc" style="font-size:small;"> @item.Description </label>  <br />
                         <label id="lblLocation"> @item.Bin </label> <br />
                         <label id="lblFIFO"> FIFO: @DateTime.Now.ToString("MMMM yyyy") </label> <br />
-                        <div>
-                            <img src="@item.Image" alt="PN Picture" />
-                        </div>
+                        
                     }
-
+               
             </div>
-            
+            <div>
+                <img src="@ViewBag.url" alt="PN Picture" />
+            </div>
         </div>
         
         
