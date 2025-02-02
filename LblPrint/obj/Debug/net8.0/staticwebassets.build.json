@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "j8LIU2nUcBcV/DrsKdoJi6ZWaf9crrze933IQfo8k5Q=",
+  "Hash": "jUZ+HV5rainv4ixT4BAzhTPKR6m3OkvgXX745yyguG8=",
   "Source": "LblPrint",
   "BasePath": "_content/LblPrint",
   "Mode": "Default",
@@ -73,8 +73,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "glw6qeew1g",
-      "Integrity": "fONv34K4mN3si1ydRl31xmFsQdcEwsMIW5ojRDhdMA0=",
+      "Fingerprint": "gajydtaf9v",
+      "Integrity": "KLebPUSHaaR68Kp1W7fcHtO9h34WiZiT5JY8wqTOMPU=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
@@ -99,6 +99,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\josep\\source\\repos\\jbowser64\\Label-Printer\\LblPrint\\wwwroot\\image.png",
+      "SourceId": "LblPrint",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\josep\\source\\repos\\jbowser64\\Label-Printer\\LblPrint\\wwwroot\\",
+      "BasePath": "_content/LblPrint",
+      "RelativePath": "image#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "rwztdr469x",
+      "Integrity": "C5SwvK4yDmk32cnEEMTOnNrz/2G+d9qz6IBKIi9sAAQ=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\image.png"
     },
     {
       "Identity": "C:\\Users\\josep\\source\\repos\\jbowser64\\Label-Printer\\LblPrint\\wwwroot\\js\\site.js",
@@ -1352,7 +1373,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2858"
+          "Value": "2931"
         },
         {
           "Name": "Content-Type",
@@ -1360,11 +1381,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"fONv34K4mN3si1ydRl31xmFsQdcEwsMIW5ojRDhdMA0=\""
+          "Value": "\"KLebPUSHaaR68Kp1W7fcHtO9h34WiZiT5JY8wqTOMPU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 01 Jan 2025 23:33:49 GMT"
+          "Value": "Sun, 26 Jan 2025 17:26:57 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1374,12 +1395,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-fONv34K4mN3si1ydRl31xmFsQdcEwsMIW5ojRDhdMA0="
+          "Value": "sha256-KLebPUSHaaR68Kp1W7fcHtO9h34WiZiT5JY8wqTOMPU="
         }
       ]
     },
     {
-      "Route": "css/site.glw6qeew1g.css",
+      "Route": "css/site.gajydtaf9v.css",
       "AssetFile": "C:\\Users\\josep\\source\\repos\\jbowser64\\Label-Printer\\LblPrint\\wwwroot\\css\\site.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -1389,7 +1410,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2858"
+          "Value": "2931"
         },
         {
           "Name": "Content-Type",
@@ -1397,11 +1418,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"fONv34K4mN3si1ydRl31xmFsQdcEwsMIW5ojRDhdMA0=\""
+          "Value": "\"KLebPUSHaaR68Kp1W7fcHtO9h34WiZiT5JY8wqTOMPU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 01 Jan 2025 23:33:49 GMT"
+          "Value": "Sun, 26 Jan 2025 17:26:57 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1411,7 +1432,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "glw6qeew1g"
+          "Value": "gajydtaf9v"
         },
         {
           "Name": "label",
@@ -1419,7 +1440,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-fONv34K4mN3si1ydRl31xmFsQdcEwsMIW5ojRDhdMA0="
+          "Value": "sha256-KLebPUSHaaR68Kp1W7fcHtO9h34WiZiT5JY8wqTOMPU="
         }
       ]
     },
@@ -1502,6 +1523,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-Jtxf9L+5ITKRc1gIRl4VbUpGkRNfOBXjYTdhJD4facM="
+        }
+      ]
+    },
+    {
+      "Route": "image.png",
+      "AssetFile": "C:\\Users\\josep\\source\\repos\\jbowser64\\Label-Printer\\LblPrint\\wwwroot\\image.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "58017"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"C5SwvK4yDmk32cnEEMTOnNrz/2G+d9qz6IBKIi9sAAQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 02 Feb 2022 21:24:28 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-C5SwvK4yDmk32cnEEMTOnNrz/2G+d9qz6IBKIi9sAAQ="
+        }
+      ]
+    },
+    {
+      "Route": "image.rwztdr469x.png",
+      "AssetFile": "C:\\Users\\josep\\source\\repos\\jbowser64\\Label-Printer\\LblPrint\\wwwroot\\image.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "58017"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"C5SwvK4yDmk32cnEEMTOnNrz/2G+d9qz6IBKIi9sAAQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 02 Feb 2022 21:24:28 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "rwztdr469x"
+        },
+        {
+          "Name": "label",
+          "Value": "image.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-C5SwvK4yDmk32cnEEMTOnNrz/2G+d9qz6IBKIi9sAAQ="
         }
       ]
     },

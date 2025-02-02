@@ -12,7 +12,7 @@ namespace DataFirstTest
             builder.Services.AddDbContext<PartsAndLocationsContext>(options =>
            options.UseSqlServer(builder.Configuration.GetConnectionString("Conn")
            ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.")));
-
+            
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
