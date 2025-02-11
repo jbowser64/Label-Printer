@@ -55,7 +55,10 @@ namespace DataFirstTest.Controllers
                 foreach (var item in parts)
                 {
 
-                    string URL = $"http://api.labelary.com/v1/printers/8dpmm/labels/2x1/0/%5EXA%5EPW406%5EFT40,52%5EA0N,42,42%5EFH/%5EFD{item.Material}%5EFS%5EFT40,78%5EA0N,25,25%5EFH/%5EFD{item.Description}%5EFS%5EFT40,106%5EA0N,25,25%5EFH/%5EFD%5EFS%5EFT40,140%5EA0N,37,37%5EFH/%5EFD{item.Bin}%5EFS%5EFT275,140%5EA0N,37,37%5EFH/%5EFD%5EFS%5EFT40,180%5EA0N,37,37%5EFH/%5EFD{DateTime.Now.ToString("MMMM yyyy")}%20%5EFS%5EPQ1,0,1,Y%5EXZ";
+                    string URL = $"http://api.labelary.com/v1/printers/8dpmm/labels/2x1/0/%5EXA%5EPW406%5EFT40,52%5EA0N,42,42%5EFH/%5EFD{item.Material}" +
+                        $"%5EFS%5EFT40,78%5EA0N,25,25%5EFH/%5EFD{item.Description}" +
+                        $"%5EFS%5EFT40,106%5EA0N,25,25%5EFH/%5EFD%5EFS%5EFT40,140%5EA0N,37,37%5EFH/%5EFD{item.Bin}" +
+                        $"%5EFS%5EFT275,140%5EA0N,37,37%5EFH/%5EFD%5EFS%5EFT40,180%5EA0N,37,37%5EFH/%5EFD{DateTime.Now.ToString("MMMM yyyy")}%20%5EFS%5EPQ1,0,1,Y%5EXZ";
                     ViewBag.url = URL;
                 }
 
