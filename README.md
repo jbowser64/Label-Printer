@@ -1,5 +1,6 @@
 # Label-Printer
 <H1>TA Label Printer</H1>
+<h2>This is still a work in progress!</h2>
 Creating a locally hosted site in Visual Studio Community using .Net MVC and Entity Framework. This site will allow for team members to print labels for parts in our warehouse and for production. The program uses a Labelary API endpoint to generate a PNG image as a label. 
 
 <h1>VS Downloads Needed!(Visual Studio Installer)</h1>
