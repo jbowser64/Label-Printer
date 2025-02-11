@@ -27,3 +27,21 @@ Creating a locally hosted site in Visual Studio Community using .Net MVC and Ent
      Microsoft.EntityFrameworkCore.Tools
 </li>
 </list>
+<h1>To seed Database and connect to program:</h1>
+<ol>
+  <li>
+    Use SQL server of your choosing
+  </li>
+  <li>
+    Import "PartsAndLocationsSQLite.CSV" file from lblprint>Data folder.
+  </li>
+  <li>
+   Check the " Use first row as column names" box and import
+  </li>
+  <li>
+    Connect database to Visual Studio project using the server explorer
+  </li>
+  <li>
+    Navigate to lblprint>Models>PartsAndLocationsContext.cs and change line 19 to => optionsBuilder.UseSqlServer("Data Source= {YOUR SQL CONNNECTION HERE}) 
+  </li>
+</ol>
