@@ -5,7 +5,7 @@ Creating a locally hosted site in Visual Studio Community using .Net MVC and Ent
 <h1>VS Downloads Needed!(Visual Studio Installer)</h1>
   <list>
   <li>
-   ASP.NET an web development
+   ASP.NET and web development
   </li>
   </list>
 <h1>Nuget Packs Needed!(nuget package installer inside Visual Studio)</h1>
