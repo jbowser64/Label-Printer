@@ -27,7 +27,7 @@ public partial class PartsAndLocationsContext : DbContext
             entity.Property(e => e.Abc).HasMaxLength(50).HasColumnName("ABC");
             entity.Property(e => e.Bin).HasMaxLength(50);
             entity.Property(e => e.Description).HasMaxLength(50);
-            entity.Property(e => e.LastCount).HasColumnName("Last_Count");
+            entity.Property(e => e.LastCount).HasColumnName("LastCount");
             entity.Property(e => e.Material).HasMaxLength(50);
             entity.Property(e => e.Plant).HasMaxLength(50);
             entity.Property(e => e.Qty).HasColumnName("QTY");

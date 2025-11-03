@@ -12,15 +12,13 @@ public partial class PartsAndLocation
 
     public string? Bin { get; set; }
 
-    public short? Qty { get; set; }
+    public int? Qty { get; set; }
 
     public DateOnly? LastCount { get; set; }
 
-    public double? Cost { get; set; }
+    public Decimal? Cost { get; set; }
 
     public string? Description { get; set; }
-
-    public string? Image { get; set; }
 
 
 }
