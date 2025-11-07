@@ -1,68 +1,110 @@
 ﻿using DataFirstTest.Models;
-using System.IO;
-using System.Net.Http;
-using System.Windows;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Text;
 
 namespace DataFirstTest.PrintManager
 {
-    public class printManager
+    public class PrintOperations
     {
+        private readonly PartsAndLocationsContext _context;
+        private const string DEFAULT_STORAGE_LOCATION = "1000";
+        private const int MAX_DESCRIPTION_LENGTH = 25;
 
-        private static PartsAndLocationsContext _context;
-
-        public async Task PNGDownload(string partNum)
+        public PrintOperations(PartsAndLocationsContext context)
         {
-            PartsAndLocationsContext context = new PartsAndLocationsContext();
+            _context = context ?? throw new ArgumentNullException(nameof(context));
+        }
 
-            _context = context;
-
-            var parts = from p
-                        in _context.PartsAndLocations
-                        select p;
-            if (!String.IsNullOrEmpty(partNum))
+        /// <summary>
+        /// Generates a label URL for the Labelary API.
+        /// </summary>
+        /// <param name="partNum">Part number to search for</param>
+        /// <param name="quantity">Number of labels to generate (affects PQ command)</param>
+        /// <param name="customFifo">Optional custom FIFO date, uses current month/year if null</param>
+        /// <param name="customBin">Optional custom bin location</param>
+        /// <returns>Labelary API URL for the label image</returns>
+        public string GenerateLabelUrl(string partNum, int quantity = 1, string? customFifo = null, string? customBin = null)
+        {
+            if (string.IsNullOrWhiteSpace(partNum))
             {
+                throw new ArgumentException("Part number cannot be null or empty.", nameof(partNum));
+            }
 
-                parts = parts.Where(s => s.Material.Contains(partNum) && s.Sloc.Equals("1000"));
-                string URL = "";
-                foreach (var item in parts)
-                {
-                    string description = item.Description ?? "No Description";
-                    string desc1 = description.Length > 25 ? description.Substring(0, 25) : description;
-                    string desc2 = description.Length > 25 ? description.Substring(25) : "";
-                    string material = item.Material;
-                    string bin = item.Bin; 
+            var part = _context.PartsAndLocations
+                .FirstOrDefault(p => p.Material != null && 
+                                    p.Material.Contains(partNum) && 
+                                    p.Sloc == DEFAULT_STORAGE_LOCATION);
 
-                    URL = $"https://api.labelary.com/v1/printers/8dpmm/labels/2x1/0/" +
-                       $"%5EXA%5EPW406%5EFT40,52%5EA0N,42,42%5EFH/%5EFD{material}%5EFS%5EFT40,78%5EA0N,25,25%5EFH/%5E" +
-                       $"FD{desc1}%5EFS%5EFT40,106%5EA0N,25,25%5EFH/%5E" +
-                       $"FD{desc2}%5EFS%5EFT40,140%5EA0N,37,37%5EFH/%5E" +
-                       $"FD{bin}%5EFS%5EFT275,140%5EA0N,37,37%5EFH/%5EFD%5EFS%5EFT40,180%5EA0N,37,37%5EFH/%5E" +
-                       $"FDFIFO: {DateTime.Now.ToString("MMMM yyyy")}%5EFS%5EPQ1,0,1,Y%5EXZ";
-                }
-                partNum = "";
-                string outputFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "label.png");
+            if (part == null)
+            {
+                throw new InvalidOperationException($"Part '{partNum}' not found in storage location {DEFAULT_STORAGE_LOCATION}.");
+            }
 
+            var description = part.Description ?? "No Description";
+            var desc1 = description.Length > MAX_DESCRIPTION_LENGTH 
+                ? description.Substring(0, MAX_DESCRIPTION_LENGTH) 
+                : description;
+            var desc2 = description.Length > MAX_DESCRIPTION_LENGTH 
+                ? description.Substring(MAX_DESCRIPTION_LENGTH) 
+                : string.Empty;
+            var material = part.Material ?? string.Empty;
+            var bin = customBin ?? part.Bin ?? string.Empty;
+            var fifoDate = customFifo ?? DateTime.Now.ToString("MMMM yyyy");
 
-                try
-                {
-                    using (HttpClient client = new HttpClient())
-                    {
-                        client.DefaultRequestHeaders.Add("Accept", "image/png");
-                        client.DefaultRequestHeaders.Add("User-Agent", "C# App");
-                        byte[] imageBytes = await client.GetByteArrayAsync(URL);
-                        await File.WriteAllBytesAsync(outputFilePath, imageBytes);
-                    }
-                }
-                catch (HttpRequestException ex)
-                {
-                   string Error = ($"Error: An HTTP request error occurred. The server may be unavailable or the URL is invalid.{ex.Message}");
+            // Build ZPL command string
+            var zplCommand = new StringBuilder();
+            zplCommand.Append("^XA"); // Start label
+            zplCommand.Append("^PW406"); // Print width
+            zplCommand.Append("^FT40,52^A0N,42,42^FH\\^FD"); // Material number position and font
+            zplCommand.Append(material);
+            zplCommand.Append("^FS");
+            zplCommand.Append("^FT40,78^A0N,25,25^FH\\^FD"); // Description line 1
+            zplCommand.Append(desc1);
+            zplCommand.Append("^FS");
+            zplCommand.Append("^FT40,106^A0N,25,25^FH\\^FD"); // Description line 2
+            zplCommand.Append(desc2);
+            zplCommand.Append("^FS");
+            zplCommand.Append("^FT40,140^A0N,37,37^FH\\^FD"); // Bin location
+            zplCommand.Append(bin);
+            zplCommand.Append("^FS");
+            zplCommand.Append("^FT275,140^A0N,37,37^FH\\^FD^FS"); // Empty field
+            zplCommand.Append("^FT40,180^A0N,37,37^FH\\^FD"); // FIFO date
+            zplCommand.Append($"FIFO: {fifoDate}");
+            zplCommand.Append("^FS");
+            zplCommand.Append($"^PQ{quantity},0,1,Y"); // Print quantity
+            zplCommand.Append("^XZ"); // End label
 
-                }
-                catch (Exception ex)
-                {
-                    string Error = ($"An unexpected error occurred: {ex.Message}");
-                }
+            // URL encode the ZPL command
+            var encodedZpl = Uri.EscapeDataString(zplCommand.ToString());
+            return $"https://api.labelary.com/v1/printers/8dpmm/labels/2x1/0/{encodedZpl}";
+        }
+
+        /// <summary>
+        /// Downloads a label image from the Labelary API as a byte array.
+        /// </summary>
+        /// <param name="partNum">Part number to generate label for</param>
+        /// <param name="quantity">Number of labels (default: 1)</param>
+        /// <param name="customFifo">Optional custom FIFO date</param>
+        /// <param name="customBin">Optional custom bin location</param>
+        /// <returns>Byte array containing the PNG image data</returns>
+        public async Task<byte[]> DownloadLabelImageAsync(string partNum, int quantity = 1, string? customFifo = null, string? customBin = null)
+        {
+            var labelUrl = GenerateLabelUrl(partNum, quantity, customFifo, customBin);
+
+            using var client = new HttpClient();
+            client.DefaultRequestHeaders.Add("Accept", "image/png");
+            client.DefaultRequestHeaders.Add("User-Agent", "TA Label Printer App");
+
+            try
+            {
+                var imageBytes = await client.GetByteArrayAsync(labelUrl);
+                return imageBytes;
+            }
+            catch (HttpRequestException ex)
+            {
+                throw new InvalidOperationException(
+                    $"Error downloading label image from Labelary API. The server may be unavailable or the URL is invalid. {ex.Message}", 
+                    ex);
             }
         }
     }

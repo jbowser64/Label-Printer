@@ -48,7 +48,37 @@
                        id="QTYLbl" 
                        class="form-control" 
                        placeholder="Enter Label QTY" 
-                       min="1" />
+                       min="1" 
+                       value="1" />
+            </div>
+
+            <div class="form-group mb-3">
+                @if (Model != null && Model.Any())
+                {
+                    <form id="printLabelForm" asp-controller="Home" asp-action="DownloadLabel" method="post" style="display: none;">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="printNum" id="printNumHidden" value="@ViewContext.HttpContext.Request.Query["printNum"]" />
+                        <input type="hidden" name="qty" id="qtyHidden" value="1" />
+                        <input type="hidden" name="fifo" id="fifoHidden" />
+                        <input type="hidden" name="bin" id="binHidden" />
+                    </form>
+                    <button type="button" 
+                            id="btnPrintLabels" 
+                            class="submit_button" 
+                            style="width: 100%;">
+                        Print Labels
+                    </button>
+                }
+                else
+                {
+                    <button type="button" 
+                            id="btnPrintLabels" 
+                            class="submit_button" 
+                            style="width: 100%;"
+                            disabled>
+                        Print Labels (Search for a part first)
+                    </button>
+                }
             </div>
         </div>
     </div>
@@ -93,3 +123,7 @@
         }
     </div>
 </div>
+
+@section Scripts {
+    <script src="~/JS/Script.js" asp-append-version="true"></script>
+}

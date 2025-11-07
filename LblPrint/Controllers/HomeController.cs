@@ -1,119 +1,177 @@
 using DataFirstTest.Models;
+using DataFirstTest.PrintManager;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
-using System.Security.Policy;
+using System.Text;
 
 namespace DataFirstTest.Controllers
 {
     public class HomeController : Controller
     {
         private readonly PartsAndLocationsContext _context;
+        private readonly PrintOperations _printOperations;
+        private const string DEFAULT_STORAGE_LOCATION = "1000";
+        private const int MAX_DESCRIPTION_LENGTH = 25;
 
         public HomeController(PartsAndLocationsContext context)
         {
-            _context = context;
+            _context = context ?? throw new ArgumentNullException(nameof(context));
+            _printOperations = new PrintOperations(_context);
         }
 
-        public IActionResult PartsDB(string searchNum)
+        public async Task<IActionResult> PartsDB(string searchNum)
         {
             if (_context.PartsAndLocations == null)
             {
-
-                return Problem($"{searchNum} not located in database");
+                return Problem("Database context is not properly configured.");
             }
 
-            //string mystring = ""; test
-            var parts = from p
-                        in _context.PartsAndLocations
-                        select p;
-            if (!String.IsNullOrEmpty(searchNum))
+            if (string.IsNullOrWhiteSpace(searchNum))
             {
-                parts = parts.Where(s => s.Material.Contains(searchNum));
-                return View(parts.ToList());
+                return View(new List<PartsAndLocation>());
             }
-            else
-                return View();
 
+            var parts = await _context.PartsAndLocations
+                .Where(p => p.Material != null && p.Material.Contains(searchNum))
+                .ToListAsync();
+
+            return View(parts);
         }
 
-        public IActionResult Index(string printNum)
+        public async Task<IActionResult> Index(string printNum)
         {
             if (_context.PartsAndLocations == null)
             {
-                return Problem($"{printNum} not located in database");
+                return Problem("Database context is not properly configured.");
             }
 
-            var parts = from p
-                        in _context.PartsAndLocations
-                        select p;
-            if (!String.IsNullOrEmpty(printNum))
+            if (string.IsNullOrWhiteSpace(printNum))
             {
-                parts = parts.Where(s => s.Material.Contains(printNum) && s.Sloc.Equals("1000"));
-
-                foreach (var item in parts)
-                {
-                    string description = item.Description ?? "No Description";
-                    string desc1 = description.Length > 25 ? description.Substring(0, 25) : description;
-                    string desc2 = description.Length > 25 ? description.Substring(25) : "";
-
-                    string URL = $"https://api.labelary.com/v1/printers/8dpmm/labels/2x1/0/" +
-                       $"%5EXA%5EPW406%5EFT40,52%5EA0N,42,42%5EFH/%5EFD{item.Material}%5EFS%5EFT40,78%5EA0N,25,25%5EFH/%5E" +
-                       $"FD{desc1}%5EFS%5EFT40,106%5EA0N,25,25%5EFH/%5E" +
-                       $"FD{desc2}%5EFS%5EFT40,140%5EA0N,37,37%5EFH/%5E" +
-                       $"FD{item.Bin}%5EFS%5EFT275,140%5EA0N,37,37%5EFH/%5EFD%5EFS%5EFT40,180%5EA0N,37,37%5EFH/%5E" +
-                       $"FDFIFO: {DateTime.Now.ToString("MMMM yyyy")}%5EFS%5EPQ1,0,1,Y%5EXZ";
-
-                    /*string URL = $"http://api.labelary.com/v1/printers/8dpmm/labels/2x1/0/%5EXA%5EPW406%5EFT40,52%5EA0N,42,42%5EFH/%5EFD{item.Material}" +
-                        $"%5EFS%5EFT40,78%5EA0N,25,25%5EFH/%5EFD{item.Description}" +
-                        $"%5EFS%5EFT40,106%5EA0N,25,25%5EFH/%5EFD%5EFS%5EFT40,140%5EA0N,37,37%5EFH/%5EFD{item.Bin}" +
-                        $"%5EFS%5EFT275,140%5EA0N,37,37%5EFH/%5EFD%5EFS%5EFT40,180%5EA0N,37,37%5EFH/%5EFD{DateTime.Now.ToString("MMMM yyyy")}%20%5EFS%5EPQ1,0,1,Y%5EXZ";
-                   */
-                    ViewBag.url = URL;
-                }
-
-                return View(parts.ToList());
+                return View(new List<PartsAndLocation>());
             }
 
-            else
+            var parts = await _context.PartsAndLocations
+                .Where(p => p.Material != null && 
+                           p.Material.Contains(printNum) && 
+                           p.Sloc == DEFAULT_STORAGE_LOCATION)
+                .ToListAsync();
 
-                return View();
+            if (parts.Any())
+            {
+                // Generate label URL for the first matching part
+                var firstPart = parts.First();
+                ViewBag.url = GenerateLabelaryUrl(firstPart);
+            }
 
+            return View(parts);
         }
 
-        public IActionResult PrintLabels(string printNum, int QTY, string FIFO, string Bin)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DownloadLabel(string printNum, int qty = 1, string? fifo = null, string? bin = null)
         {
-            var parts = from p
-                       in _context.PartsAndLocations
-                       select p;
-            if (!String.IsNullOrEmpty(printNum))
+            if (string.IsNullOrWhiteSpace(printNum))
             {
-                List<string> partChanger = new List<string>();
-
-                parts = parts.Where(s => s.Material.Contains(printNum) && s.Sloc.Equals("1000"));
-            
-                foreach (var item in parts)
-                {
-                    partChanger.Add(item.ToString()); 
-                }
-                return View(parts.ToList());
+                return BadRequest("Part number is required.");
             }
-            else
 
-                return View();
+            try
+            {
+                var imageBytes = await _printOperations.DownloadLabelImageAsync(printNum, qty, fifo, bin);
+                var fileName = $"Label_{printNum}_{DateTime.Now:yyyyMMddHHmmss}.png";
+                
+                return File(imageBytes, "image/png", fileName);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return Problem($"An error occurred while generating the label: {ex.Message}");
+            }
         }
 
+        public async Task<IActionResult> PrintLabels(string printNum, int qty = 1, string? fifo = null, string? bin = null)
+        {
+            if (_context.PartsAndLocations == null)
+            {
+                return Problem("Database context is not properly configured.");
+            }
 
+            if (string.IsNullOrWhiteSpace(printNum))
+            {
+                return View(new List<PartsAndLocation>());
+            }
 
+            var parts = await _context.PartsAndLocations
+                .Where(p => p.Material != null && 
+                           p.Material.Contains(printNum) && 
+                           p.Sloc == DEFAULT_STORAGE_LOCATION)
+                .ToListAsync();
 
-
+            return View(parts);
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(new ErrorViewModel 
+            { 
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier 
+            });
+        }
+
+        /// <summary>
+        /// Generates a Labelary API URL for generating a label image.
+        /// </summary>
+        /// <param name="part">The part information to include on the label</param>
+        /// <returns>URL-encoded Labelary API URL</returns>
+        private string GenerateLabelaryUrl(PartsAndLocation part)
+        {
+            if (part == null)
+            {
+                throw new ArgumentNullException(nameof(part));
+            }
+
+            var description = part.Description ?? "No Description";
+            var desc1 = description.Length > MAX_DESCRIPTION_LENGTH 
+                ? description.Substring(0, MAX_DESCRIPTION_LENGTH) 
+                : description;
+            var desc2 = description.Length > MAX_DESCRIPTION_LENGTH 
+                ? description.Substring(MAX_DESCRIPTION_LENGTH) 
+                : string.Empty;
+            var material = part.Material ?? string.Empty;
+            var bin = part.Bin ?? string.Empty;
+            var fifoDate = DateTime.Now.ToString("MMMM yyyy");
+
+            // Build ZPL command string
+            var zplCommand = new StringBuilder();
+            zplCommand.Append("^XA"); // Start label
+            zplCommand.Append("^PW406"); // Print width
+            zplCommand.Append("^FT40,52^A0N,42,42^FH\\^FD"); // Material number position and font
+            zplCommand.Append(material);
+            zplCommand.Append("^FS");
+            zplCommand.Append("^FT40,78^A0N,25,25^FH\\^FD"); // Description line 1
+            zplCommand.Append(desc1);
+            zplCommand.Append("^FS");
+            zplCommand.Append("^FT40,106^A0N,25,25^FH\\^FD"); // Description line 2
+            zplCommand.Append(desc2);
+            zplCommand.Append("^FS");
+            zplCommand.Append("^FT40,140^A0N,37,37^FH\\^FD"); // Bin location
+            zplCommand.Append(bin);
+            zplCommand.Append("^FS");
+            zplCommand.Append("^FT275,140^A0N,37,37^FH\\^FD^FS"); // Empty field
+            zplCommand.Append("^FT40,180^A0N,37,37^FH\\^FD"); // FIFO date
+            zplCommand.Append($"FIFO: {fifoDate}");
+            zplCommand.Append("^FS");
+            zplCommand.Append("^PQ1,0,1,Y"); // Print quantity
+            zplCommand.Append("^XZ"); // End label
+
+            // URL encode the ZPL command
+            var encodedZpl = Uri.EscapeDataString(zplCommand.ToString());
+            return $"https://api.labelary.com/v1/printers/8dpmm/labels/2x1/0/{encodedZpl}";
         }
     }
 }
