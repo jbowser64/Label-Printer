@@ -146,6 +146,12 @@ th {
     width:fit-content;
     padding:5px;
     text-align:center;
+    color: goldenrod;
+}
+
+.data-table th,
+.part-table th {
+    color: goldenrod !important;
 }
 img {
     margin:10px;

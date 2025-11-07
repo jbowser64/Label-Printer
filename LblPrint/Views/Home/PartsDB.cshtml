@@ -1,70 +1,75 @@
 ﻿﻿@{
-    //ViewData["Title"] = "Parts and Info";
+    ViewData["Title"] = "Parts Database";
 }
 @model IEnumerable<PartsAndLocation>
 
+<div class="text-center mb-4">
+    <h1 class="display-4">Parts Database</h1>
+</div>
 
-
-<body>
-    <div class="label-container">
-        <div class="data-entry-left">
-            <div class="label-entry">
-                <form asp-controller="Home" asp-action="PartsDB">
-                    <label>Part Number:<br /><input type="text" name="searchNum" placeholder="Enter Part Number" autofocus /></label>  <br />
-                    <button class="submit_button " type="submit">Search Part</button><br />
-                </form>
-            </div>
-
+<div class="label-container">
+    <div class="data-entry-left">
+        <div class="label-entry">
+            <form asp-controller="Home" asp-action="PartsDB" method="get">
+                <div class="form-group mb-3">
+                    <label for="searchNum">Part Number:</label>
+                    <input type="text" 
+                           name="searchNum" 
+                           id="searchNum" 
+                           class="form-control" 
+                           placeholder="Enter Part Number" 
+                           autofocus 
+                           value="@ViewContext.HttpContext.Request.Query["searchNum"]" />
+                </div>
+                <button class="submit_button" type="submit">Search Part</button>
+            </form>
         </div>
-        <div class="data-table">
-            <table class="part-table">
+    </div>
+
+    <div class="data-table">
+        <div class="table-responsive">
+            <table class="table table-striped part-table">
                 <thead>
                     <tr>
-                        <th style="margin-right:10px;">Material</th>
-                        <th style="margin-right:10px;">Description</th>
-                        <th style="margin-right:10px;">Bin</th>
-                        <th style="margin-right:10px;">Plant</th>
-                        <th style="margin-right:10px;">SLOC</th>
-                        <th style="margin-right:10px;">QTY On Hand</th>
-                        <th style="margin-right:10px;">ABC</th>
-                        <th style="margin-right:10px;">Cost</th>
-                        <th style="margin-right:10px;">Last Count</th>
+                        <th>Material</th>
+                        <th>Description</th>
+                        <th>Bin</th>
+                        <th>Plant</th>
+                        <th>SLOC</th>
+                        <th>QTY On Hand</th>
+                        <th>ABC</th>
+                        <th>Cost</th>
+                        <th>Last Count</th>
                     </tr>
                 </thead>
                 <tbody>
-                        @if (Model == null)
-                        {
-                         <tr>
-                            <td>Material</td>
-                            <td>Description</td>
-                            <td>Bin</td>
-                            <td>Plant</td>
-                            <td>Sloc</td>
-                            <td>Qty</td>
-                            <td>Abc</td>
-                            <td>Cost</td>
-                            <td>LastCount</td>
+                    @if (Model == null || !Model.Any())
+                    {
+                        <tr>
+                            <td colspan="9" class="text-center td">
+                                <em>No parts found. Enter a part number to search.</em>
+                            </td>
                         </tr>
-                        }
-                        
-                        else 
-
-                        foreach (var item in Model)
+                    }
+                    else
+                    {
+                        @foreach (var item in Model)
                         {
                             <tr>
-                                <td class="td">@item.Material</td>
-                                <td class="td">@item.Description</td>
-                                <td class="td">@item.Bin</td>
-                                <td class="td">@item.Plant</td>
-                                <td class="td">@item.Sloc</td>
-                                <td class="td">@item.Qty</td>
-                                <td class="td">@item.Abc</td>
-                                <td class="td">$@item.Cost </td>
-                                <td class="td">@item.LastCount</td>
+                                <td class="td">@(item.Material ?? "N/A")</td>
+                                <td class="td">@(item.Description ?? "N/A")</td>
+                                <td class="td">@(item.Bin ?? "N/A")</td>
+                                <td class="td">@(item.Plant ?? "N/A")</td>
+                                <td class="td">@(item.Sloc ?? "N/A")</td>
+                                <td class="td">@(item.Qty?.ToString() ?? "N/A")</td>
+                                <td class="td">@(item.Abc ?? "N/A")</td>
+                                <td class="td">@(item.Cost.HasValue ? $"${item.Cost:F2}" : "N/A")</td>
+                                <td class="td">@(item.LastCount?.ToString() ?? "N/A")</td>
                             </tr>
                         }
+                    }
                 </tbody>
             </table>
         </div>
     </div>
-</body>
+</div>
